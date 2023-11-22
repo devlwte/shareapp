@@ -7,7 +7,7 @@
     "pathpublic": "app/public"
   },
   "description": "Comparte tus maravillosas aplicaciones con la comunidad.",
-  "tags": "Shared, Apps, New Package, App",
+  "tags": "Share, Apps, New Package, App",
   "main": "shareapp.js",
   "repository": {
     "type": "git",
