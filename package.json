@@ -1,0 +1,29 @@
+{
+  "name": "shareapp",
+  "title": "Share App",
+  "version": "1.0.0",
+  "server": {
+    "pathviews": "app/views",
+    "pathpublic": "app/public"
+  },
+  "description": "Comparte tus maravillosas aplicaciones con la comunidad.",
+  "tags": "Shared, Apps, New Package, App",
+  "main": "shareapp.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devlwte/shareapp.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "devlwte",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "gravatar": "^1.8.2"
+  },
+  "webPreferences": {
+    "nodeIntegration": true,
+    "contextIsolation": false
+  }
+}

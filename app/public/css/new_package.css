@@ -1,0 +1,43 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+}
+body{
+    background-color: #eee;
+    user-select: none;
+}
+.body{
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+/* menu */
+.menu-pegado{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+/* datas */
+.left_data{
+    width: 100%;
+    background-color: #eee;
+    padding: 20px 0;
+}
+
+/* form */
+.container-hab{
+    overflow: hidden;
+}
+
+/* btns */
+.btn_sends{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+}
