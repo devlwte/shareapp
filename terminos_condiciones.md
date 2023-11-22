@@ -1,19 +1,19 @@
 #### Términos y condiciones
 #### Última actualización: `21/11/2023`
 
-Bienvenido a `New Package`, Comparte tus maravillosas aplicaciones con la comunidad. Antes de continuar utilizando esta aplicación, te pedimos que leas y aceptes los siguientes términos y condiciones. Al usar `New Package`, aceptas estar legalmente vinculado por estos términos y condiciones. Si no estás de acuerdo con alguno de los términos, te recomendamos que no utilices la aplicación.
+Bienvenido a `Share App`, Comparte tus maravillosas aplicaciones con la comunidad. Antes de continuar utilizando esta aplicación, te pedimos que leas y aceptes los siguientes términos y condiciones. Al usar `Share App`, aceptas estar legalmente vinculado por estos términos y condiciones. Si no estás de acuerdo con alguno de los términos, te recomendamos que no utilices la aplicación.
 
 #### 1. Protección de Datos
 
-Tus datos son tratados con la máxima confidencialidad y seguridad. Nos comprometemos a proteger tu privacidad y a garantizar que tu información se utilice únicamente para mejorar tu experiencia en `New Package`.
+Tus datos son tratados con la máxima confidencialidad y seguridad. Nos comprometemos a proteger tu privacidad y a garantizar que tu información se utilice únicamente para mejorar tu experiencia en `Share App`.
 
 #### 2. Responsabilidad del Usuario
 
-Al aceptar estos términos y condiciones, reconoces que eres el único responsable de cualquier actividad que ocurra en tu dispositivo mientras utilices `New Package`. Asegúrate de mantener tu dispositivo seguro y no compartas información sensible con otros usuarios.
+Al aceptar estos términos y condiciones, reconoces que eres el único responsable de cualquier actividad que ocurra en tu dispositivo mientras utilices `Share App`. Asegúrate de mantener tu dispositivo seguro y no compartas información sensible con otros usuarios.
 
 #### 3. Limitación de Responsabilidad
 
-La empresa detrás de `New Package` no se hace responsable de daños o perjuicios que puedan surgir como resultado del uso de la aplicación. El usuario acepta que utiliza la aplicación bajo su propio riesgo.
+La empresa detrás de `Share App` no se hace responsable de daños o perjuicios que puedan surgir como resultado del uso de la aplicación. El usuario acepta que utiliza la aplicación bajo su propio riesgo.
 
 #### 4. Actualización de Términos y Condiciones
 
@@ -23,4 +23,4 @@ Nos reservamos el derecho de actualizar y modificar estos términos y condicione
 
 Si tienes alguna pregunta o inquietud sobre estos términos y condiciones, puedes ponerte en contacto con nosotros a través de lokuedo5001@gmail.com.
 
-Al continuar utilizando `New Package`, aceptas los términos y condiciones establecidos anteriormente. Gracias por elegir nuestra aplicación.
+Al continuar utilizando `Share App`, aceptas los términos y condiciones establecidos anteriormente. Gracias por elegir nuestra aplicación.
