@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClarityHub | Share App - Update</title>
+  <!-- Iconos -->
+  <link rel="stylesheet" href="/lib/icomoon/icomoon.css">
+  <link rel="stylesheet" href="/lib/faws/style.css">
+
+  <!-- Roboto -->
+  <link rel="stylesheet" href="/lib/roboto/roboto.css">
+
+  <!-- Materializecss -->
+  <link rel="stylesheet" href="/lib/materialize/css/materialize.min.css">
+
+  <!-- New Package -->
+  <link rel="stylesheet" href="/css/new_package.css">
+
+  <!-- browsers -->
+  <link rel="stylesheet" href="/browsers/browsers.css">
+
+</head>
+
+<body id="update_data">
+  <div class="body">
+    <!-- menu -->
+    <%- include('../include/menu.ejs') %>
+    <div class="container-hab">
+      <div class="row">
+        <div class="col s12 m8 l9">
+          <!-- data -->
+          <div class="left_data">
+            <div class="container">
+              <h5>Actualizar datos</h5>
+              <div class="row">
+                <form class="col s12" id="form_apps" spellcheck="false">
+                  <!-- <img src="https://s.gravatar.com/avatar/6ff4f33b1dc5e23923465c8b6f01fbd4?s=100&r=x&d=retro" alt=""> -->
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="..." id="ref" type="text" name="ref" readonly>
+                      <label for="ref">Identificador personalizado</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input placeholder="..." id="name_app" type="text" name="name" class="validate">
+                      <label for="name_app">Nombre del Package</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                      <input placeholder="..." id="title_app" type="text" name="title" class="validate">
+                      <label for="title_app">Titulo del Package</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                      <input placeholder="..." id="repo_app" type="text" name="repo" class="validate">
+                      <label for="repo_app">Repositorio de GitHub</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                      <input placeholder="..." id="version_app" type="text" name="version" class="validate">
+                      <label for="version_app">Version</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input placeholder="..." id="cover_app" type="text" name="cover" class="validate">
+                      <label for="cover_app">Cover del Package</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                      <input placeholder="..." id="banner_app" type="text" name="banner" class="validate">
+                      <label for="banner_app">Banner del Package</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="..." id="caps_app" type="text" name="caps" class="validate">
+                      <label for="caps_app">Capturas del Package</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="..." id="homepage_app" type="text" name="homepage" class="validate">
+                      <label for="homepage_app">Pagina de inicio</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="App, Videos, ect..." id="tags_app" type="text" name="tags" class="validate">
+                      <label for="tags_app">Tags</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea placeholder="..." id="dcp_app" name="dcp" class="materialize-textarea"></textarea>
+                      <label for="dcp_app">Descripcion</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12">
+                      <label for="ishome_app">
+                        <input type="checkbox" id="ishome_app" name="ishome" />
+                        <span>Es una pagina de inicio</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12">
+                      <div class="btn_sends">
+                        <div class="waves-effect waves-light btn blue" id="public">Save</div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m4 l3">
+          <div class="data_right">
+            <h5>Apps</h5>
+            <div class="list_apps">
+              <div class="app_user">
+                <div class="icono_app"></div>
+                <div class="data_app">
+                  <div class="name_app">
+                    TorrentHive
+                  </div>
+                  <div class="version_app">
+                    1.0.0
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- jquery -->
+  <script src="/lib/jQuery/jquery.module.js"></script>
+
+  <!-- Node JS -->
+  <script src="/lib/js/nodejs.js"></script>
+
+  <!-- materialize -->
+  <script src="/lib/materialize/js/materialize.min.js"></script>
+  <script src="/lib/materialize/js/init.js"></script>
+
+  <!-- saved -->
+  <script src="/lib/js/saved.js"></script>
+
+  <!-- apigb -->
+  <script src="/js/apigb.js"></script>
+
+  <!-- util -->
+  <script src="/lib/js/codeutilkit.js"></script>
+
+  <!-- browsers -->
+  <script src="/browsers/browsers.js"></script>
+
+  <!-- news -->
+  <script src="/js/news.js"></script>
+
+</body>
+
+</html>

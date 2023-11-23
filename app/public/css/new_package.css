@@ -41,3 +41,47 @@ body{
     justify-content: flex-end;
     width: 100%;
 }
+
+/* apps */
+.data_right{
+    padding: 20px 0;
+}
+
+.app_user{
+    width: 100%;
+    padding: 10px;
+    background-color: #e2e2e23b;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    transition: 0.2s all;
+}
+.app_user:hover{
+    background-color: #e2e2e2;
+    cursor: pointer;
+}
+.app_user *{
+    pointer-events: none;
+}
+.icono_app{
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    /* background-color: black; */
+    border-radius: 4px;
+}
+.data_app{
+    width: calc(100% - 50px);
+    padding-left: 10px;
+}
+.name_app{
+    font-size: 20px;
+    font-family: "Roboto";
+    margin: 0;
+    line-height: 1;
+}
+.version_app{
+    font-size: 15px;
+    font-family: "Roboto";
+    line-height: 1;
+}

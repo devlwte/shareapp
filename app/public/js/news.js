@@ -68,29 +68,62 @@ function isMail(mail) {
     }
 }
 
+// seacrh
+function getElms(arrays, key, value) {
+    return arrays.filter((elemento) => elemento[key] == value);
+}
+
+// set data in form
+function setDataForm(item) {
+    let form = $("#form_apps");
+
+    // inputs text
+    let inputs_select = form.find("input[type=text]");
+    for (let a = 0; a < inputs_select.length; a++) {
+        const input = inputs_select[a];
+        let names = $(input);
+        const selector_attr = names.attr("name");
+        names.val(item[selector_attr]);
+    }
+
+    // textarea
+    let textarea_select = form.find("textarea");
+    for (let t = 0; t < textarea_select.length; t++) {
+        const ts = textarea_select[t];
+        let names = $(ts);
+        const selector_attr = names.attr("name");
+        names.val(item[selector_attr]);
+    }
+
+    // inputs checkbox
+    let checkbox_select = form.find("input[type=checkbox]");
+    for (let ch = 0; ch < checkbox_select.length; ch++) {
+        const check = checkbox_select[ch];
+        let names = $(check);
+        const selector_attr = names.attr("name");
+        if (item[selector_attr]) {
+            names.attr("checked", "");
+        } else {
+            names.removeAttr("checked");
+        }
+    }
+
+    // UPDATE FORM
+    M.updateTextFields();
+    M.textareaAutoResize($("textarea"));
+}
+
 kit.onDOMReady(async () => {
     // All folders
     let folders = await sendMessage("all-folders");
 
-    Ref.generateID(30, "#ref");
-
-    // send
-    const apps = await _ajax("/php/insert", "post", {
-        page: "https://mainlw.000webhostapp.com/clarityhub/php/operations.php",
-        data: {
-            action: 'getAllArray',
-            tableName: "apps",
-            data: {}
-        }
-    });
-
-    console.log(apps);
-
     // storage
     const storage = new StorageData(path.join(folders.userData, "storagedata.json"));
+
     // agregar apps
     const ispage_home = kit.existsElm("#home_data");
     if (ispage_home) {
+        Ref.generateID(30, "#ref");
         $("#public").on("click", async function (e) {
             e.preventDefault();
             let dataform = $("#form_apps").serialize();
@@ -132,8 +165,114 @@ kit.onDOMReady(async () => {
                 }
             });
 
-            console.log(aj);
+            if (aj) {
+
+            } else {
+                M.toast({ html: `Falló. Puede ser un problema de conexión.`, classes: 'rounded orange darken-4' });
+            }
+
         });
+    }
+
+    // agregar apps
+    const ispage_update = kit.existsElm("#update_data");
+    if (ispage_update) {
+        // get apps
+        const apps = await _ajax("/php/insert", "post", {
+            page: "https://mainlw.000webhostapp.com/clarityhub/php/operations.php",
+            data: {
+                action: 'getAllArray',
+                tableName: "apps",
+                data: {}
+            }
+        });
+
+        if (apps) {
+
+            // get apps by dev
+            let appsSelect = getElms(apps.message, "dev", storage.get("user.ref"));
+            $(".list_apps").empty();
+            for (let i = 0; i < appsSelect.length; i++) {
+                const ap = appsSelect[i];
+
+                // create
+                const $elm = $(`<div class="app_user">
+                                <div class="icono_app"></div>
+                                <div class="data_app">
+                                <div class="name_app">
+                                    TorrentHive
+                                </div>
+                                <div class="version_app">
+                                    1.0.0
+                                </div>
+                                </div>
+                            </div>`);
+
+                // add
+                $elm.find(".icono_app").css({ backgroundImage: `url('${ap.cover}')` });
+                $elm.find(".name_app").text(ap.title);
+                $elm.find(".version_app").text(ap.version);
+
+                // click
+                $($elm).on("click", function () {
+                    setDataForm(ap);
+                });
+
+
+                $(".list_apps").append($elm);
+            }
+
+            // save
+            $("#public").on("click", async function (e) {
+                e.preventDefault();
+                let dataform = $("#form_apps").serialize();
+                let datas = kit.searchParams("?" + dataform);
+
+                // is home
+                let ishome = datas.ishome ? datas.ishome === "on" : false;
+
+                datas.ishome = ishome;
+
+                // verificar que ningun campo este vacio
+                for (const val of Object.keys(datas)) {
+                    if (val !== "ishome") {
+                        const inputElement = $("#form_apps").find("input[name='" + val + "'], textarea[name='" + val + "']");
+                        if (inputElement.length > 0) {
+                            const inputValue = inputElement.val().trim();
+                            if (inputValue === "") {
+                                const id_input = inputElement.attr("id");
+                                const label = $("#form_apps").find("label[for='" + id_input + "']");
+                                M.toast({ html: `Error complete el campo '${label.text()}'`, classes: 'rounded orange darken-4' });
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                // add user ref
+                datas.dev = storage.get("user.ref");
+
+                // get list
+                const update_reg = await _ajax("/php/insert", "post", {
+                    page: "https://mainlw.000webhostapp.com/clarityhub/php/operations.php",
+                    data: {
+                        action: 'idseguro',
+                        idseguro: storage.get("user.idseguro"),
+                        correo: storage.get("user.correo"),
+                        dev: storage.get("user.ref"),
+                        data: {
+                            ...datas
+                        }
+                    }
+                });
+
+                if (update_reg.title === "exito") {
+                    M.toast({ html: `Datos Actualizados`, classes: 'rounded green' });
+                }
+            });
+        } else {
+            M.toast({ html: `Falló. Puede ser un problema de conexión.`, classes: 'rounded orange darken-4' });
+        }
     }
 
     // verificar si hay un usuario
@@ -160,14 +299,14 @@ kit.onDOMReady(async () => {
             // id
             const id_win = win.attr("id");
 
-            // Create en $form Input infoHash
+            // Create en $form Input
             const $infoHashInput = $(`<div class='input-field col s12'>`);
             $infoHashInput.append(`<input name="ref" id='ref_${id_win}' type='text' class='validate'>`);
             $infoHashInput.append(`<label for='ref_${id_win}'>Identificador</label>`);
             $infoHashInput.find(`input`).val(Ref.generateID(30));
             $form.append($infoHashInput);
 
-            // Create en $form Input Name
+            // Create en $form Input
             const $nameInput = $(`<div class='input-field col s12'>`);
             $nameInput.append(`<input name="name" id='user_name${id_win}' type='text' class='validate'>`);
             $nameInput.append(`<label for='user_name${id_win}'>User Name</label>`);
@@ -175,7 +314,7 @@ kit.onDOMReady(async () => {
             $form.append($nameInput);
 
 
-            // Create en $form Input size
+            // Create en $form Input
             const $sizeInput = $(`<div class='input-field col s6'>`);
             $sizeInput.append(`<input name="correo" id='correo_${id_win}' type='text' class='validate'>`);
             $sizeInput.append(`<label for='correo_${id_win}'>Gmail</label>`);
@@ -188,6 +327,13 @@ kit.onDOMReady(async () => {
             $gravatarInput.append(`<input name="icono" id='gravatar_${id_win}' type='text' class='validate'>`);
             $gravatarInput.append(`<label for='gravatar_${id_win}'>Gravatar</label>`);
             $form.append($gravatarInput);
+
+            // Create en $form Input
+            const $claveInput = $(`<div class='input-field col s12'>`);
+            $claveInput.append(`<input name="idseguro" id='clave_${id_win}' type='text' class='validate'>`);
+            $claveInput.append(`<label for='clave_${id_win}'>Clave Segura</label>`);
+            $claveInput.find(`input`).val(Ref.generateIDs(35));
+            $form.append($claveInput);
 
             // container
             const $container_fuild = $("<div class='container-hab'>");
@@ -278,18 +424,22 @@ kit.onDOMReady(async () => {
                 }
             });
 
-            if (aj.title === "exito") {
-                // save
-                storage.set("user", datas);
-                // close
-                userdata.closeBrowserIsPaused();
-                userdata = null;
+            if (aj) {
+                if (aj.title === "exito") {
+                    // save
+                    storage.set("user", datas);
+                    // close
+                    userdata.closeBrowserIsPaused();
+                    userdata = null;
 
-                M.toast({ html: aj.message, classes: 'rounded orange darken-4' });
-            } else {
-                M.toast({ html: aj.message, classes: 'rounded orange darken-4' });
-                userdata.closeBrowserIsCancelled();
+                    M.toast({ html: aj.message, classes: 'rounded orange darken-4' });
+                } else {
+                    M.toast({ html: aj.message, classes: 'rounded orange darken-4' });
+                    userdata.closeBrowserIsCancelled();
+                }
             }
+
+
 
         });
     }

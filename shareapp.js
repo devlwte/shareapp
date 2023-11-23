@@ -22,6 +22,14 @@ const routes = [
         }
     },
     {
+        method: 'get',
+        path: '/update',
+        handler: (req, res) => {
+            // render
+            res.render(path.join(__dirname, "app", "views", "update"));
+        }
+    },
+    {
         method: 'post',
         path: '/php/insert',
         handler: async (req, res) => {
@@ -30,7 +38,7 @@ const routes = [
                 let axiosres = await axios.get(page, { params: args.data });
                 res.json(axiosres.data);
             } catch (error) {
-                res.send(error);
+                res.send(false);
             }
         }
     }

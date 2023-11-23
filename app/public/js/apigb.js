@@ -38,6 +38,32 @@ class Ref {
             return result;
         }
     }
+
+    static generateIDs(length, elm) {
+        // Caracteres permitidos en la contraseña (puedes personalizar esto según tus necesidades)
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_!@#$%^&*()_-+=<>?";
+    
+        // Genera la contraseña
+        let result = "";
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters.charAt(randomIndex);
+        }
+    
+        if (elm) {
+            const element =
+                elm instanceof Element
+                    ? elm
+                    : (typeof jQuery !== 'undefined' && elm instanceof jQuery)
+                        ? elm[0] // Si es una selección de jQuery, toma el primer elemento del conjunto
+                        : document.querySelector(elm);
+    
+            element.value = result;
+        } else {
+            return result;
+        }
+    }
+    
 }
 
 class GetNames {
