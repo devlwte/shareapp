@@ -221,58 +221,58 @@ kit.onDOMReady(async () => {
 
                 $(".list_apps").append($elm);
             }
-
-            // save
-            $("#public").on("click", async function (e) {
-                e.preventDefault();
-                let dataform = $("#form_apps").serialize();
-                let datas = kit.searchParams("?" + dataform);
-
-                // is home
-                let ishome = datas.ishome ? datas.ishome === "on" : false;
-
-                datas.ishome = ishome;
-
-                // verificar que ningun campo este vacio
-                for (const val of Object.keys(datas)) {
-                    if (val !== "ishome") {
-                        const inputElement = $("#form_apps").find("input[name='" + val + "'], textarea[name='" + val + "']");
-                        if (inputElement.length > 0) {
-                            const inputValue = inputElement.val().trim();
-                            if (inputValue === "") {
-                                const id_input = inputElement.attr("id");
-                                const label = $("#form_apps").find("label[for='" + id_input + "']");
-                                M.toast({ html: `Error complete el campo '${label.text()}'`, classes: 'rounded orange darken-4' });
-                                return;
-                            }
-                        }
-                    }
-                }
-
-                // add user ref
-                datas.dev = storage.get("user.ref");
-
-                // get list
-                const update_reg = await _ajax("/php/insert", "post", {
-                    page: "https://mainlw.000webhostapp.com/clarityhub/php/operations.php",
-                    data: {
-                        action: 'idseguro',
-                        idseguro: storage.get("user.idseguro"),
-                        correo: storage.get("user.correo"),
-                        dev: storage.get("user.ref"),
-                        data: {
-                            ...datas
-                        }
-                    }
-                });
-
-                if (update_reg.title === "exito") {
-                    M.toast({ html: `Datos Actualizados`, classes: 'rounded green' });
-                }
-            });
         } else {
             M.toast({ html: `Falló. Puede ser un problema de conexión.`, classes: 'rounded orange darken-4' });
         }
+
+        // save
+        $("#public").on("click", async function (e) {
+            e.preventDefault();
+            let dataform = $("#form_apps").serialize();
+            let datas = kit.searchParams("?" + dataform);
+
+            // is home
+            let ishome = datas.ishome ? datas.ishome === "on" : false;
+
+            datas.ishome = ishome;
+
+            // verificar que ningun campo este vacio
+            for (const val of Object.keys(datas)) {
+                if (val !== "ishome") {
+                    const inputElement = $("#form_apps").find("input[name='" + val + "'], textarea[name='" + val + "']");
+                    if (inputElement.length > 0) {
+                        const inputValue = inputElement.val().trim();
+                        if (inputValue === "") {
+                            const id_input = inputElement.attr("id");
+                            const label = $("#form_apps").find("label[for='" + id_input + "']");
+                            M.toast({ html: `Error complete el campo '${label.text()}'`, classes: 'rounded orange darken-4' });
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // add user ref
+            datas.dev = storage.get("user.ref");
+
+            // get list
+            const update_reg = await _ajax("/php/insert", "post", {
+                page: "https://mainlw.000webhostapp.com/clarityhub/php/operations.php",
+                data: {
+                    action: 'idseguro',
+                    idseguro: storage.get("user.idseguro"),
+                    correo: storage.get("user.correo"),
+                    dev: storage.get("user.ref"),
+                    data: {
+                        ...datas
+                    }
+                }
+            });
+
+            if (update_reg.title === "exito") {
+                M.toast({ html: `Datos Actualizados`, classes: 'rounded green' });
+            }
+        });
     }
 
     // verificar si hay un usuario
